@@ -46,10 +46,17 @@ def construct_most_severe_pli_info(line: str, pli_ind: int) -> list:
 
     columns = line.strip().split()
     info_fields = columns[7].split(";")
+
+    transcripts = None
+
     for field in info_fields:
         if field.startswith("CSQ="):
             transcripts = field.split("CSQ=")[1].split(",")
             break
+
+    if transcripts is None:
+        return columns
+
     pli_values = parse_vep_transcripts(transcripts, pli_ind)
     try:
         pli_max = max(pli_values)
