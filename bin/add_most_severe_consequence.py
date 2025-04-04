@@ -77,7 +77,7 @@ def construct_most_severe_consequence_info(
             break
 
     if transcripts is None:
-        transcripts = []
+        return columns
 
     hgnc_ids, alleles, consequences, severity = parse_vep_csq_transcripts(
         transcripts, allele_ind, csq_ind, hgnc_ind, var_csq
